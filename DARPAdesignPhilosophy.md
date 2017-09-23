@@ -27,6 +27,18 @@
   - Since the original context for the internet project was military, the survival of the network was placed higher than its accountability
 
 #### Survivability
+  - The main goal: create an architecture where the only way to lose all communication is if there is no physical path over which ANY sort of communication can be achieved
+  - So this means that downstream layers must have state persistence.
+    - This includes # of packets transmitted, # of packets acknowledged, or the # of outstanding flow control permissions
+    - so one way to do this is to have intermediate layers in the network save the state of transmissions.
+  - The way that was chosen was the 'dumb pipe'. The intermediate layers know nothing of the state of packets travelling across them.
+    - Instead the client and endpoints save the state.
+  - **fate sharing**: so the state of a transmission is only lost if both the endpoint and the entity it communicates with are lost - or lose their state.
+    - There are two important advantages of fate sharing over replication (meaning replicating state in the intermediate layers):
+      1. FS protects against any number of intermediate layer failures.
+      2. FS is much easier to engineer than replication
+    - There are two major consequences of FS
+      1. Intermediate layers (packet switching nodes/gateways) cannot have any state information. This class of network design is called "datagram network"
 
 # Questions for test - self answers
 

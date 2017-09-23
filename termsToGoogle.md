@@ -3,3 +3,4 @@ octals/bits/bytes
 multiplexing
 packet switching
 store and forward algorithm
+flow control permissions
