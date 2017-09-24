@@ -4,3 +4,4 @@ multiplexing
 packet switching
 store and forward algorithm
 flow control permissions
+difference between UDP and TCP

@@ -39,13 +39,42 @@
       2. FS is much easier to engineer than replication
     - There are two major consequences of FS
       1. Intermediate layers (packet switching nodes/gateways) cannot have any state information. This class of network design is called "datagram network"
+      2. There is no reliable delivery of data that is guaranteed. All the responsibility of state information is on the host and entity
+
+#### Types of Service
+  - The traditional type of service is called *virtual circuit* service
+    - this is bi directional reliable delivery of data
+    - it was the first type of service provided by TCP
+    - examples are login services and file transfer
+
+  - TCP was originally designed to be general enough to support any needed type of service.
+    - this didn't work out
+    - XNET and digitized speech were examples of services that didnt fit with TCP
+    - digitized speech needed to have guaranteed order of packets
+
+  - because TCP was obviously unable to handle all types of needed services, it was decided that more than one transport protocol would be required
+
+  - The minimum requirements of the new protocols is that they can simultaneously constrain the following 3 things:
+    1. reliability
+    2. delay
+    3. bandwidth
+
+  - This caused TCP and IP to be split (they were originally all wrapped under TCP)
+    - TCP provided the reliability requirement
+    - IP allowed for variety of services
+
+  - UDP stands for *User Datagram Protocol*
 
 # Questions for test - self answers
 
 1. Discuss the advantages of the fate-sharing survivability model present in Internet
 Protocols today, and how this model differs from a distributed state/replicated
 survivability model.
-  - here's where answer goes
+  - There are two direct advantages of FS discussed in the paper.
+  - The first is that FS protects against any number of failures in intermediate layers of the network.
+    - This differs from replication in that intermediate layers in a distributed state model must detect errors and inform down/up stream layers (including the host and entity)
+  - The second is that FS is much easier to engineer than replication.
+  - One consequence is that there is no guaranteed reliable delivery in a datagram network (FS network).
 
 2. Explain how the Internet architecture achieves the flexibility required to support a wide
 variety of networks? What functions is the network assumed to provide, and more
